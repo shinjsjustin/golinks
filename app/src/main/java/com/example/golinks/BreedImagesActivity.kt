@@ -1,10 +1,12 @@
 package com.example.golinks
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +31,16 @@ class BreedImagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_breed_images)
 
+        val pBar = findViewById<ProgressBar>(R.id.progressBar)
+        pBar.visibility = View.VISIBLE
+
         val breedName = intent.getStringExtra(EXTRA_BREED_NAME) ?: return
+
+        val rootLayout = findViewById<RelativeLayout>(R.id.rootLayout)
+        when(breedName){
+            "whippet" -> rootLayout.setBackgroundColor(Color.parseColor("#FFC0CB"))
+            "greyhound/italian" -> rootLayout.setBackgroundColor(Color.parseColor("#800080"))
+        }
 
         viewManager = GridLayoutManager(this, 3)
         viewAdapter = BreedImageAdapter(listOf())
@@ -62,6 +73,7 @@ class BreedImagesActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<BreedImagesResponse> {
             override fun onResponse(call: Call<BreedImagesResponse>, response: Response<BreedImagesResponse>) {
+                pBar.visibility = View.GONE
                 if (response.isSuccessful) {
                     val images = response.body()?.message ?: listOf()
                     (recyclerView.adapter as BreedImageAdapter).setData(images)
@@ -71,6 +83,7 @@ class BreedImagesActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<BreedImagesResponse>, t: Throwable) {
+                pBar.visibility = View.GONE
                 Log.e("BreedImagesActivity", "Error: $t")
             }
         })

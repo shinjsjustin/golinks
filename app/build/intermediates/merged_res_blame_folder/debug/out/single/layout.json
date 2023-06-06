@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/breed_image_item.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/breed_image_item.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/content_main.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/content_main.xml"
+    },
+    {
+        "merged": "com.example.golinks.app-mergeDebugResources-45:/layout/activity_breed_images.xml",
+        "source": "com.example.golinks.app-main-48:/layout/activity_breed_images.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/dog_breed_item.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/dog_breed_item.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/activity_main.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/activity_breed_images.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/activity_breed_images.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/fragment_first.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/fragment_first.xml"
+    },
+    {
+        "merged": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-mergeDebugResources-45:/layout/fragment_second.xml",
+        "source": "/Users/justin/.gradle/daemon/8.0/com.example.golinks.app-main-48:/layout/fragment_second.xml"
+    }
+]

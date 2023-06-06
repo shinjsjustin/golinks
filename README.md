@@ -1,5 +1,5 @@
 # GoLink's Hackathon
-
+Justin Shin (June 05, 2023)
 # Task: 
 
 Create an app that gives the user a list of dog breeds available in the dog API and let the user interact with the data.

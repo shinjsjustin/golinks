@@ -1,5 +1,6 @@
 package com.example.golinks
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -36,7 +37,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = DogBreedAdapter(listOf())
+        viewAdapter = DogBreedAdapter(listOf()){breedName->
+            val intent = Intent(this, BreedImagesActivity::class.java).apply{
+                putExtra(BreedImagesActivity.EXTRA_BREED_NAME, breedName)
+            }
+            startActivity(intent)
+        }
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)

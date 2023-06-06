@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BreedImagesActivity"
+            android:exported="true"
+            android:label="golinks"
+            android:theme="@style/Theme.Golinks">
+
+        </activity>
     </application>
 
 </manifest>

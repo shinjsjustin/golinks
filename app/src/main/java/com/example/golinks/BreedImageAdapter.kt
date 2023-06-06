@@ -1,32 +1,35 @@
 package com.example.golinks
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class DogBreedAdapter(private var dogBreeds: List<String>, private val clickListener: (String)-> Unit) : RecyclerView.Adapter<DogBreedAdapter.ViewHolder>() {
+class BreedImageAdapter(private var images: List<String>) : RecyclerView.Adapter<BreedImageAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val breedName: TextView = view.findViewById(R.id.breedName)
+        val imageView: ImageView = view.findViewById(R.id.imageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.dog_breed_item, parent, false)
+            .inflate(R.layout.breed_image_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val breed = dogBreeds[position]
-        holder.breedName.text = breed
-        holder.itemView.setOnClickListener({clickListener(breed)})
+        val image = images[position]
+        Glide.with(holder.itemView)
+            .load(image)
+            .into(holder.imageView)
     }
 
-    override fun getItemCount() = dogBreeds.size
+    override fun getItemCount() = images.size
 
     fun setData(newData: List<String>) {
-        dogBreeds = newData
+        images = newData
         notifyDataSetChanged()
     }
 }

@@ -5,7 +5,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DogBreedAdapter(private var dogBreeds: List<String>, private val clickListener: (String)-> Unit) : RecyclerView.Adapter<DogBreedAdapter.ViewHolder>() {
+class DogBreedAdapter(
+    private var dogBreeds: List<Pair<String, String>>,
+    private val clickListener: (String)-> Unit
+) : RecyclerView.Adapter<DogBreedAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val breedName: TextView = view.findViewById(R.id.breedName)
@@ -18,14 +21,14 @@ class DogBreedAdapter(private var dogBreeds: List<String>, private val clickList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val breed = dogBreeds[position]
-        holder.breedName.text = breed
-        holder.itemView.setOnClickListener({clickListener(breed)})
+        val (breed, subBreed) = dogBreeds[position]
+        holder.breedName.text = if(subBreed.isNotEmpty()) "$breed/$subBreed" else breed
+        holder.itemView.setOnClickListener{clickListener(if(subBreed.isNotEmpty()) "$breed/$subBreed" else breed)}
     }
 
     override fun getItemCount() = dogBreeds.size
 
-    fun setData(newData: List<String>) {
+    fun setData(newData: List<Pair<String, String>>) {
         dogBreeds = newData
         notifyDataSetChanged()
     }

@@ -60,8 +60,20 @@ class MainActivity : AppCompatActivity() {
         service.listBreeds().enqueue(object : Callback<DogBreedResponse> {
             override fun onResponse(call: Call<DogBreedResponse>, response: Response<DogBreedResponse>) {
                 if (response.isSuccessful) {
-                    val dogBreeds = response.body()?.message?.keys?.toList() ?: listOf()
-                    (recyclerView.adapter as DogBreedAdapter).setData(dogBreeds)
+//                    val dogBreeds = response.body()?.message?.keys?.toList() ?: listOf()
+//                    (recyclerView.adapter as DogBreedAdapter).setData(dogBreeds)
+                    val dogBreedMap = response.body()?.message?: emptyMap()
+                    val breedList = mutableListOf<Pair<String, String>>()
+                    for ((breed, subBreeds) in dogBreedMap) {
+                        if (subBreeds.isEmpty()) {
+                            breedList.add(Pair(breed, ""))
+                        } else {
+                            for (subBreed in subBreeds) {
+                                breedList.add(Pair(breed, subBreed))
+                            }
+                        }
+                    }
+                    (recyclerView.adapter as DogBreedAdapter).setData(breedList)
                 } else {
                     Log.e("MainActivity", "Error: ${response.errorBody()}")
                 }

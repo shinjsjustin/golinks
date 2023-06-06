@@ -5,10 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".BreedImagesActivity">
 
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/titleTextView"
         android:scrollbars="vertical" />
 
 </RelativeLayout>

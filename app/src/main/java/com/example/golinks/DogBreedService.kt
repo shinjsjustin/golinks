@@ -10,4 +10,7 @@ interface DogBreedService {
 
     @GET("api/breed/{breed}/images/random/{count}")
     fun getBreedImages(@Path("breed") breed: String, @Path("count")count: Int): Call<BreedImagesResponse>
+
+    @GET("api/breed/{breed}/{subBreed}/images/random/{count}")
+    fun getSubBreedImages(@Path("breed") breed: String, @Path("subBreed") subBreed: String, @Path("count") count: Int): Call<BreedImagesResponse>
 }

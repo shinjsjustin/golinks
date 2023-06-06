@@ -1,7 +1,12 @@
 package com.example.golinks
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +34,9 @@ class BreedImagesActivity : AppCompatActivity() {
         viewManager = GridLayoutManager(this, 3)
         viewAdapter = BreedImageAdapter(listOf())
 
+        val titleTextView = findViewById<TextView>(R.id.titleTextView)
+        titleTextView.text = breedName.replace("/", " ")
+
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
@@ -42,7 +50,17 @@ class BreedImagesActivity : AppCompatActivity() {
 
         val service = retrofit.create(DogBreedService::class.java)
 
-        service.getBreedImages(breedName, 15).enqueue(object : Callback<BreedImagesResponse> {
+        val (breed, subBreed) = breedName.split('/').let {
+            if(it.size==2) Pair(it[0], it[1]) else Pair(it[0],"")
+        }
+
+        val call = if(subBreed.isNotEmpty()){
+            service.getSubBreedImages(breed, subBreed, 15)
+        }else{
+            service.getBreedImages(breed, 15)
+        }
+
+        call.enqueue(object : Callback<BreedImagesResponse> {
             override fun onResponse(call: Call<BreedImagesResponse>, response: Response<BreedImagesResponse>) {
                 if (response.isSuccessful) {
                     val images = response.body()?.message ?: listOf()
